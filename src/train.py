@@ -57,9 +57,9 @@ for epoch in range(epochs):
         print(f"Epoch {epoch+1}, Loss: {loss.item():.6f}")
 
 
-torch.save(model.state_dict(), "lstm_stock_model.pth")
-joblib.dump(scaler, "scaler.save")
-print("\nModel ve Scaler kaydedildi.")
+torch.save(model.state_dict(), "../models/lstm_stock_model.pth")
+joblib.dump(scaler, "../models/scaler.save")
+print("\nModel ve Scaler '../models/' klasörüne kaydedildi.")
 
 #GÖRSELLEŞTİRME---
 model.eval()
@@ -118,6 +118,6 @@ plt.ylabel('Frekans')
 plt.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('detayli_analiz_dashboard.png', dpi=300)
-print("\nDetaylı analiz grafiği 'detayli_analiz_dashboard.png' olarak kaydedildi.")
+plt.savefig('../outputs/detayli_analiz_dashboard.png', dpi=300)
+print("\nGrafik '../outputs/' klasörüne kaydedildi.")
 plt.show()

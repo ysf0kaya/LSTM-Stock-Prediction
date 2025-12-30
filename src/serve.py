@@ -2,14 +2,26 @@ import gradio as gr
 import torch
 import numpy as np
 import joblib
+import os
 from model import LSTMModelDemo
+
+model_path = "../models/lstm_stock_model.pth"
+scaler_path = "../models/scaler.save"
 
 # Modeli ve Scaler'ı yükle
 model = LSTMModelDemo()
-model.load_state_dict(torch.load("lstm_stock_model.pth"))
+if os.path.exists(model_path):
+    model.load_state_dict(torch.load(model_path))
+else:
+    print("Hata: Model dosyası bulunamadı! Lütfen önce eğitimi çalıştırın.")
+
 model.eval()
 
-scaler = joblib.load("scaler.save")
+# Scaler'ı yükle
+if os.path.exists(scaler_path):
+    scaler = joblib.load(scaler_path)
+else:
+    print("Hata: Scaler dosyası bulunamadı!")
 
 def process_input(input_str):
     try:
